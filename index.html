@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Souvik Debnath — Digital Marketing & SEO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2e45;
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-dark: #085041;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --off-white: #f7f5f0;
+    --text-main: #0d1b2a;
+    --text-muted: #4a5568;
+    --border: rgba(0,0,0,0.1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text-main);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--navy);
+    z-index: 100;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    color: #fff;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal-light); }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 6rem 5% 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(29,158,117,0.2);
+    color: #5DCAA5;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(29,158,117,0.35);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #5DCAA5;
+  }
+  .hero-desc {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem;
+    max-width: 440px;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.6rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--teal-dark); }
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    color: #5DCAA5;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero-quote {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 8px 8px 0;
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    font-style: italic;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 5%; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--navy);
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  /* SKILLS */
+  #skills { background: #fff; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-category {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.75rem;
+    background: var(--off-white);
+  }
+  .skill-cat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .icon-teal { background: var(--teal-light); color: var(--teal-dark); }
+  .icon-amber { background: var(--amber-light); color: var(--amber); }
+  .icon-coral { background: var(--coral-light); color: var(--coral); }
+  .skill-cat-title {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.85rem;
+    color: var(--navy);
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pill {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-weight: 400;
+    background: #fff;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--off-white); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    padding-left: 56px;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: 11px;
+    top: 7px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 3px solid var(--off-white);
+    box-shadow: 0 0 0 1px var(--teal);
+  }
+  .timeline-date {
+    font-size: 0.78rem;
+    color: var(--teal);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-role {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--navy);
+  }
+  .timeline-company {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.85rem;
+  }
+  .timeline-points { list-style: none; }
+  .timeline-points li {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    padding: 0.3rem 0 0.3rem 1.25rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .timeline-points li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 0.85rem;
+    top: 0.35rem;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: 100px;
+    margin-left: 8px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+  .badge-teal { background: var(--teal-light); color: var(--teal-dark); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+
+  /* PROJECTS */
+  #projects { background: var(--navy); }
+  #projects .section-title { color: #fff; }
+  #projects .section-label { color: #5DCAA5; }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover {
+    border-color: rgba(29,158,117,0.5);
+    transform: translateY(-2px);
+  }
+  .project-type {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5DCAA5;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .project-client {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 1rem;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .project-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tool-tag {
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* CERTIFICATIONS */
+  #certifications { background: #fff; }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .cert-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--off-white);
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: var(--teal); }
+  .cert-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  .cert-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+  .cert-by {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--off-white); }
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--navy);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .contact-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  .contact-details { list-style: none; }
+  .contact-details li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .contact-details li:last-child { border-bottom: none; }
+  .contact-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .contact-val { color: var(--navy); font-weight: 400; }
+  .contact-val a { color: var(--teal); text-decoration: none; }
+  .contact-val a:hover { text-decoration: underline; }
+
+  /* VOLUNTEER */
+  .volunteer-card {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 2.5rem;
+    color: rgba(255,255,255,0.7);
+  }
+  .volunteer-card h3 {
+    font-family: 'DM Serif Display', serif;
+    color: #fff;
+    font-size: 1.35rem;
+    margin-bottom: 0.35rem;
+  }
+  .volunteer-card .v-org {
+    color: #5DCAA5;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+  .volunteer-card p { font-size: 0.92rem; line-height: 1.7; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { grid-template-columns: repeat(2,1fr); }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Souvik Debnath</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <span class="hero-tag">Open to opportunities</span>
+    <h1>Digital Marketing<br>& <em>SEO Specialist</em></h1>
+    <p class="hero-desc">3+ years driving organic visibility, campaign performance, and brand growth through technical SEO, data-driven strategy, and full-stack marketing execution.</p>
+    <div class="hero-cta-group">
+      <div style="position:relative; display:inline-block;">
+      <button class="btn btn-primary" id="git-btn" onclick="toggleDropdown()" aria-expanded="false">Get in touch <span id="git-arrow" style="display:inline-block; transition:transform 0.25s; font[...]
+      <div id="git-dropdown" style="display:none; position:absolute; top:calc(100% + 10px); left:0; background:#fff; border-radius:14px; padding:1.25rem 1.5rem; min-width:280px; box-shadow:0 12px[...]
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.85rem;">
+          <li style="display:flex; align-items:center; gap:0.75rem;">
+            <div style="width:34px; height:34px; border-radius:9px; background:#E1F5EE; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">&#9993;</div>
+            <div>
+              <div style="font-size:0.7rem; color:#4a5568; text-transform:uppercase; letter-spacing:0.06em; font-weight:500;">Email</div>
+              <a href="mailto:souvik5july@gmail.com" style="color:#1D9E75; font-size:0.88rem; text-decoration:none; font-weight:500;">souvik5july@gmail.com</a>
+            </div>
+          </li>
+          <li style="display:flex; align-items:center; gap:0.75rem;">
+            <div style="width:34px; height:34px; border-radius:9px; background:#E1F5EE; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">&#128222;</div[...]
+            <div>
+              <div style="font-size:0.7rem; color:#4a5568; text-transform:uppercase; letter-spacing:0.06em; font-weight:500;">Phone</div>
+              <span style="color:#0d1b2a; font-size:0.88rem; font-weight:500;">+91 91261 94070</span>
+            </div>
+          </li>
+          <li style="display:flex; align-items:center; gap:0.75rem;">
+            <div style="width:34px; height:34px; border-radius:9px; background:#E1F5EE; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">&#128205;</div[...]
+            <div>
+              <div style="font-size:0.7rem; color:#4a5568; text-transform:uppercase; letter-spacing:0.06em; font-weight:500;">Address</div>
+              <span style="color:#0d1b2a; font-size:0.88rem; font-weight:500;">Siliguri, West Bengal, India</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+      <a href="https://linkedin.com/in/souvik-5-july/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-num">3+</span>
+        <span class="stat-label">Years experience</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">9.06</span>
+        <span class="stat-label">CGPA — BSc Physics</span>
+      </div>
+    </div>
+    <div class="hero-quote">
+      Proficient in technical SEO audits, campaign management, and full-stack web builds — bridging the gap between marketing strategy and implementation.
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">What I bring</p>
+  <h2 class="section-title">Skills & Tools</h2>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <div class="skill-cat-icon icon-teal">🔍</div>
+      <div class="skill-cat-title">SEO & Technical</div>
+      <div class="skill-pills">
+        <span class="pill">On-Page & Off-Page SEO</span>
+        <span class="pill">Technical SEO Audits</span>
+        <span class="pill">Core Web Vitals</span>
+        <span class="pill">Keyword Research</span>
+        <span class="pill">Schema Markup</span>
+        <span class="pill">Canonicalization</span>
+        <span class="pill">XML Sitemaps</span>
+        <span class="pill">Robots.txt</span>
+        <span class="pill">SERP Optimization</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-icon icon-amber">📣</div>
+      <div class="skill-cat-title">Marketing & Strategy</div>
+      <div class="skill-pills">
+        <span class="pill">Facebook Ads</span>
+        <span class="pill">Social Media Management</span>
+        <span class="pill">Brand Management</span>
+        <span class="pill">Content Strategy</span>
+        <span class="pill">Influencer Campaigns</span>
+        <span class="pill">A/B Testing</span>
+        <span class="pill">Conversion Tracking</span>
+        <span class="pill">GenAI & Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-icon icon-coral">⚙️</div>
+      <div class="skill-cat-title">Development & Tools</div>
+      <div class="skill-pills">
+        <span class="pill">HTML, CSS, JavaScript</span>
+        <span class="pill">WordPress CMS</span>
+        <span class="pill">Next.js / MERN</span>
+        <span class="pill">Google Search Console</span>
+        <span class="pill">GA4</span>
+        <span class="pill">SEMrush & Ahrefs</span>
+        <span class="pill">Screaming Frog</span>
+        <span class="pill">Lighthouse</span>
+        <span class="pill">Figma, Canva</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Career timeline</p>
+  <h2 class="section-title">Professional Experience</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Sep 2022 – Oct 2023</div>
+      <div class="timeline-role">Senior Digital Marketing Executive <span class="badge badge-teal">Full-time</span></div>
+      <div class="timeline-company">DigiTastik Marketing Solutions</div>
+      <ul class="timeline-points">
+        <li>Led B2B marketing for <strong>MyFlyStar</strong> (flight aggregator) — pitch decks, outreach sequences, and partner onboarding collateral to build supplier and reseller networks.</l[...]
+        <li>Designed and developed the SEO-friendly MyFlyStar website using the <strong>MERN stack</strong>, implementing responsive UI and booking workflow prototypes.</li>
+        <li>Managed and mentored a cross-functional marketing team, coordinating across developers, designers, and stakeholders for launch and post-launch optimization.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Aug 2020 – Aug 2022</div>
+      <div class="timeline-role">Junior Digital Marketing Executive <span class="badge badge-amber">Growth role</span></div>
+      <div class="timeline-company">DigiTastik Marketing Solutions</div>
+      <ul class="timeline-points">
+        <li><strong>2022:</strong> LinkedIn personal branding campaign for Kelly Mallinson (spiritual healer) — content strategy, testimonial videos, social ads → increased engagement and app[...]
+        <li>Optimised campaign performance via analytics, conversion tracking, and A/B testing; delivered actionable monthly reports.</li>
+        <li><strong>2021:</strong> Spearheaded inauguration campaigns for The Retro Lounge (pub) and Jamai Aador (Bengali restaurant) through social media, influencer collabs, and local paid ads.[...]
+        <li><strong>2020–21:</strong> Branding strategy and social content calendar for JenNext Mentors; local SEO and catalog creatives for Shivam Marbles.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Dec 2023 – Jul 2024</div>
+      <div class="timeline-role">Tech Lead — Freelance <span class="badge badge-teal">Freelance</span></div>
+      <div class="timeline-company">TryTheMenu (Food & Hospitality Startup)</div>
+      <ul class="timeline-points">
+        <li>Built the entire website from scratch using <strong>Next.js + MongoDB</strong>, with a blend of CSR, SSR, and ISR for performance and SEO.</li>
+        <li>Integrated RazorPay (payments), Spotify & Flash Games (table wait-time), and implemented OAuth2, JWTs, RBAC, and CSRF protection.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Featured work</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-type">Technical SEO Audit</div>
+      <div class="project-title">Comprehensive SEO Audit</div>
+      <div class="project-client">MyVI.in (Vodafone–Idea) · Mar 2026</div>
+      <p class="project-desc">Full technical SEO audit identifying 21 issues across 9 technical areas — canonicals, directives, response codes, security headers, and performance. Diagnosed crit[...]
+      <div class="project-tools">
+        <span class="tool-tag">Screaming Frog</span>
+        <span class="tool-tag">SEMrush</span>
+        <span class="tool-tag">Google Lighthouse</span>
+        <span class="tool-tag">Chrome DevTools</span>
+        <span class="tool-tag">Wappalyzer</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Web Development + SEO</div>
+      <div class="project-title">MyFlyStar Website</div>
+      <div class="project-client">DigiTastik / MyFlyStar · 2022–2023</div>
+      <p class="project-desc">Designed and developed the SEO-friendly flight aggregator website using the MERN stack. Implemented responsive UI, good SEO practices, booking workflow prototypes, a[...]
+      <div class="project-tools">
+        <span class="tool-tag">MERN Stack</span>
+        <span class="tool-tag">On-page SEO</span>
+        <span class="tool-tag">Responsive UI</span>
+        <span class="tool-tag">Team management</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Full-stack + SEO</div>
+      <div class="project-title">TryTheMenu Platform</div>
+      <div class="project-client">TryTheMenu Startup · Dec 2023–Jul 2024</div>
+      <p class="project-desc">Built a food & hospitality SPA from scratch with Next.js and MongoDB, blending CSR/SSR/ISR rendering strategies for optimal SEO performance. Integrated payment gatew[...]
+      <div class="project-tools">
+        <span class="tool-tag">Next.js</span>
+        <span class="tool-tag">MongoDB</span>
+        <span class="tool-tag">RazorPay</span>
+        <span class="tool-tag">OAuth2 / JWT</span>
+        <span class="tool-tag">SSR / ISR</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Campaign Strategy</div>
+      <div class="project-title">LinkedIn Personal Brand</div>
+      <div class="project-client">Kelly Mallinson · 2022</div>
+      <p class="project-desc">Developed an end-to-end LinkedIn branding strategy for a spiritual healer — content calendar, testimonial videos, explainer content, and targeted social ads — re[...]
+      <div class="project-tools">
+        <span class="tool-tag">LinkedIn Ads</span>
+        <span class="tool-tag">Content strategy</span>
+        <span class="tool-tag">Video production</span>
+        <span class="tool-tag">Analytics</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">Credentials</p>
+  <h2 class="section-title">Courses & Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon icon-teal">🏅</div>
+      <div>
+        <div class="cert-name">Technical SEO & AI Search Essentials</div>
+        <div class="cert-by">Semrush</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon icon-amber">🏅</div>
+      <div>
+        <div class="cert-name">SEO Certification</div>
+        <div class="cert-by">HubSpot</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon icon-teal">🏅</div>
+      <div>
+        <div class="cert-name">Introduction to Generative AI</div>
+        <div class="cert-by">Google Skills</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon icon-coral">🏅</div>
+      <div>
+        <div class="cert-name">Learn Prompt Engineering</div>
+        <div class="cert-by">freeCodeCamp</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper">
+    <div>
+      <p class="section-label">Let's work together</p>
+      <h2 class="contact-title">Open to new opportunities</h2>
+      <p class="contact-desc">Whether you need an SEO specialist, a digital marketing strategist, or someone who bridges the gap between marketing and tech — let's talk.</p>
+      <a href="mailto:souvik5july@gmail.com" class="btn btn-primary">Send an email</a>
+    </div>
+    <div>
+      <ul class="contact-details">
+        <li>
+          <div class="contact-icon">✉️</div>
+          <span class="contact-val"><a href="mailto:souvik5july@gmail.com">souvik5july@gmail.com</a></span>
+        </li>
+        <li>
+          <div class="contact-icon">📞</div>
+          <span class="contact-val">+91 91261 94070</span>
+        </li>
+        <li>
+          <div class="contact-icon">📍</div>
+          <span class="contact-val">Siliguri, West Bengal</span>
+        </li>
+        <li>
+          <div class="contact-icon">🔗</div>
+          <span class="contact-val"><a href="https://linkedin.com/in/souvik-5-july/" target="_blank">linkedin.com/in/souvik-5-july/</a></span>
+        </li>
+      </ul>
+      <div class="volunteer-card" style="margin-top:1.5rem;">
+        <div class="v-org">Volunteer · Siliguri Pride Walk</div>
+        <h3>Core Committee Member</h3>
+        <p>Led rescue operations for LGBTQIA+ abuse victims, coordinating with police, lawyers, and politicians. Organised community carnivals with medical, psychological, and legal speakers. (De[...]
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Souvik Debnath · Digital Marketing Executive · Siliguri, West Bengal</p>
+</footer>
+
+
+
+<script>
+function toggleDropdown() {
+  var dd = document.getElementById('git-dropdown');
+  var arrow = document.getElementById('git-arrow');
+  var btn = document.getElementById('git-btn');
+  var open = dd.style.display === 'block';
+  dd.style.display = open ? 'none' : 'block';
+  arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+}
+document.addEventListener('click', function(e) {
+  var wrapper = document.getElementById('git-btn') && document.getElementById('git-btn').parentElement;
+  if (wrapper && !wrapper.contains(e.target)) {
+    document.getElementById('git-dropdown').style.display = 'none';
+    document.getElementById('git-arrow').style.transform = 'rotate(0deg)';
+    document.getElementById('git-btn').setAttribute('aria-expanded','false');
+  }
+});
+</script>
+</body>
+</html>
