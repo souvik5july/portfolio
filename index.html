@@ -477,11 +477,119 @@
     font-size: 0.8rem;
   }
 
+  /* HAMBURGER */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--navy);
+    padding: 1rem 5% 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    letter-spacing: 0.03em;
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+
+  /* TABLET — 900px */
+  @media (max-width: 900px) {
+    .hero { padding: 4rem 5% 3.5rem; gap: 3rem; }
+    .hero-quote { font-size: 0.95rem; padding: 1.25rem 1.5rem; }
+    .contact-wrapper { gap: 2.5rem; }
+  }
+
+  /* MOBILE — 768px */
   @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; gap: 3rem; }
-    .hero-stats { grid-template-columns: repeat(2,1fr); }
-    .contact-wrapper { grid-template-columns: 1fr; }
+    /* Nav */
     .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    /* Hero */
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 3rem 5% 3rem;
+      text-align: center;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+    .hero-desc { max-width: 100%; font-size: 0.98rem; }
+    .hero-cta-group { justify-content: center; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .stat-card { padding: 1.1rem 0.75rem; }
+    .stat-num { font-size: 2rem; }
+    .hero-quote { font-size: 0.88rem; padding: 1rem 1.25rem; }
+
+    /* Dropdown repositioning on mobile */
+    #git-dropdown {
+      left: 50% !important;
+      transform: translateX(-50%);
+      min-width: 260px !important;
+    }
+
+    /* Sections */
+    section { padding: 3.5rem 5%; }
+    .section-title { margin-bottom: 1.75rem; }
+
+    /* Skills */
+    .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .skill-category { padding: 1.25rem; }
+
+    /* Timeline */
+    .timeline-item { padding-left: 44px; margin-bottom: 2.25rem; }
+    .timeline-role { font-size: 1rem; }
+    .badge { display: block; margin: 4px 0 0 0; width: fit-content; }
+
+    /* Projects */
+    .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .project-card { padding: 1.5rem; }
+
+    /* Certs */
+    .certs-grid { grid-template-columns: 1fr; gap: 0.85rem; }
+
+    /* Contact */
+    .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+    .volunteer-card { padding: 1.75rem 1.5rem; }
+
+    /* Footer */
+    footer { font-size: 0.75rem; padding: 1.5rem; }
+  }
+
+  /* SMALL MOBILE — 420px */
+  @media (max-width: 420px) {
+    .hero h1 { font-size: 2rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .stat-num { font-size: 1.75rem; }
+    .hero-cta-group { flex-direction: column; align-items: center; }
+    .btn { width: 100%; text-align: center; }
+    .project-card { padding: 1.25rem; }
+    .skill-category { padding: 1rem; }
   }
 </style>
 </head>
@@ -496,7 +604,17 @@
     <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#certifications" onclick="closeMenu()">Certifications</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -506,8 +624,8 @@
     <p class="hero-desc">3+ years driving organic visibility, campaign performance, and brand growth through technical SEO, data-driven strategy, and full-stack marketing execution.</p>
     <div class="hero-cta-group">
       <div style="position:relative; display:inline-block;">
-      <button class="btn btn-primary" id="git-btn" onclick="toggleDropdown()" aria-expanded="false">Get in touch <span id="git-arrow" style="display:inline-block; transition:transform 0.25s; font[...]
-      <div id="git-dropdown" style="display:none; position:absolute; top:calc(100% + 10px); left:0; background:#fff; border-radius:14px; padding:1.25rem 1.5rem; min-width:280px; box-shadow:0 12px[...]
+      <button class="btn btn-primary" id="git-btn" onclick="toggleDropdown()" aria-expanded="false">Get in touch <span id="git-arrow" style="display:inline-block; transition:transform 0.25s; font-style:normal;">&#9660;</span></button>
+      <div id="git-dropdown" style="display:none; position:absolute; top:calc(100% + 10px); left:0; background:#fff; border-radius:14px; padding:1.25rem 1.5rem; min-width:280px; box-shadow:0 12px 40px rgba(0,0,0,0.18); border:1px solid rgba(0,0,0,0.07); z-index:200;">
         <ul style="list-style:none; display:flex; flex-direction:column; gap:0.85rem;">
           <li style="display:flex; align-items:center; gap:0.75rem;">
             <div style="width:34px; height:34px; border-radius:9px; background:#E1F5EE; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">&#9993;</div>
@@ -517,14 +635,14 @@
             </div>
           </li>
           <li style="display:flex; align-items:center; gap:0.75rem;">
-            <div style="width:34px; height:34px; border-radius:9px; background:#E1F5EE; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">&#128222;</div[...]
+            <div style="width:34px; height:34px; border-radius:9px; background:#E1F5EE; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">&#128222;</div>
             <div>
               <div style="font-size:0.7rem; color:#4a5568; text-transform:uppercase; letter-spacing:0.06em; font-weight:500;">Phone</div>
               <span style="color:#0d1b2a; font-size:0.88rem; font-weight:500;">+91 91261 94070</span>
             </div>
           </li>
           <li style="display:flex; align-items:center; gap:0.75rem;">
-            <div style="width:34px; height:34px; border-radius:9px; background:#E1F5EE; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">&#128205;</div[...]
+            <div style="width:34px; height:34px; border-radius:9px; background:#E1F5EE; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">&#128205;</div>
             <div>
               <div style="font-size:0.7rem; color:#4a5568; text-transform:uppercase; letter-spacing:0.06em; font-weight:500;">Address</div>
               <span style="color:#0d1b2a; font-size:0.88rem; font-weight:500;">Siliguri, West Bengal, India</span>
@@ -617,7 +735,7 @@
       <div class="timeline-role">Senior Digital Marketing Executive <span class="badge badge-teal">Full-time</span></div>
       <div class="timeline-company">DigiTastik Marketing Solutions</div>
       <ul class="timeline-points">
-        <li>Led B2B marketing for <strong>MyFlyStar</strong> (flight aggregator) — pitch decks, outreach sequences, and partner onboarding collateral to build supplier and reseller networks.</l[...]
+        <li>Led B2B marketing for <strong>MyFlyStar</strong> (flight aggregator) — pitch decks, outreach sequences, and partner onboarding collateral to build supplier and reseller networks.</li>
         <li>Designed and developed the SEO-friendly MyFlyStar website using the <strong>MERN stack</strong>, implementing responsive UI and booking workflow prototypes.</li>
         <li>Managed and mentored a cross-functional marketing team, coordinating across developers, designers, and stakeholders for launch and post-launch optimization.</li>
       </ul>
@@ -629,9 +747,9 @@
       <div class="timeline-role">Junior Digital Marketing Executive <span class="badge badge-amber">Growth role</span></div>
       <div class="timeline-company">DigiTastik Marketing Solutions</div>
       <ul class="timeline-points">
-        <li><strong>2022:</strong> LinkedIn personal branding campaign for Kelly Mallinson (spiritual healer) — content strategy, testimonial videos, social ads → increased engagement and app[...]
+        <li><strong>2022:</strong> LinkedIn personal branding campaign for Kelly Mallinson (spiritual healer) — content strategy, testimonial videos, social ads → increased engagement and appointment bookings.</li>
         <li>Optimised campaign performance via analytics, conversion tracking, and A/B testing; delivered actionable monthly reports.</li>
-        <li><strong>2021:</strong> Spearheaded inauguration campaigns for The Retro Lounge (pub) and Jamai Aador (Bengali restaurant) through social media, influencer collabs, and local paid ads.[...]
+        <li><strong>2021:</strong> Spearheaded inauguration campaigns for The Retro Lounge (pub) and Jamai Aador (Bengali restaurant) through social media, influencer collabs, and local paid ads.</li>
         <li><strong>2020–21:</strong> Branding strategy and social content calendar for JenNext Mentors; local SEO and catalog creatives for Shivam Marbles.</li>
       </ul>
     </div>
@@ -660,7 +778,7 @@
       <div class="project-type">Technical SEO Audit</div>
       <div class="project-title">Comprehensive SEO Audit</div>
       <div class="project-client">MyVI.in (Vodafone–Idea) · Mar 2026</div>
-      <p class="project-desc">Full technical SEO audit identifying 21 issues across 9 technical areas — canonicals, directives, response codes, security headers, and performance. Diagnosed crit[...]
+      <p class="project-desc">Full technical SEO audit identifying 21 issues across 9 technical areas — canonicals, directives, response codes, security headers, and performance. Diagnosed critical crawlability issues including missing canonicals, internal 404s, and duplicate content. Delivered a prioritised roadmap addressing on-page optimization, JS minification, and internal linking.</p>
       <div class="project-tools">
         <span class="tool-tag">Screaming Frog</span>
         <span class="tool-tag">SEMrush</span>
@@ -674,7 +792,7 @@
       <div class="project-type">Web Development + SEO</div>
       <div class="project-title">MyFlyStar Website</div>
       <div class="project-client">DigiTastik / MyFlyStar · 2022–2023</div>
-      <p class="project-desc">Designed and developed the SEO-friendly flight aggregator website using the MERN stack. Implemented responsive UI, good SEO practices, booking workflow prototypes, a[...]
+      <p class="project-desc">Designed and developed the SEO-friendly flight aggregator website using the MERN stack. Implemented responsive UI, good SEO practices, booking workflow prototypes, and basic admin interfaces while coordinating a multi-disciplinary team.</p>
       <div class="project-tools">
         <span class="tool-tag">MERN Stack</span>
         <span class="tool-tag">On-page SEO</span>
@@ -687,7 +805,7 @@
       <div class="project-type">Full-stack + SEO</div>
       <div class="project-title">TryTheMenu Platform</div>
       <div class="project-client">TryTheMenu Startup · Dec 2023–Jul 2024</div>
-      <p class="project-desc">Built a food & hospitality SPA from scratch with Next.js and MongoDB, blending CSR/SSR/ISR rendering strategies for optimal SEO performance. Integrated payment gatew[...]
+      <p class="project-desc">Built a food & hospitality SPA from scratch with Next.js and MongoDB, blending CSR/SSR/ISR rendering strategies for optimal SEO performance. Integrated payment gateway, entertainment APIs, and a full auth layer (OAuth2, RBAC, CSRF).</p>
       <div class="project-tools">
         <span class="tool-tag">Next.js</span>
         <span class="tool-tag">MongoDB</span>
@@ -701,7 +819,7 @@
       <div class="project-type">Campaign Strategy</div>
       <div class="project-title">LinkedIn Personal Brand</div>
       <div class="project-client">Kelly Mallinson · 2022</div>
-      <p class="project-desc">Developed an end-to-end LinkedIn branding strategy for a spiritual healer — content calendar, testimonial videos, explainer content, and targeted social ads — re[...]
+      <p class="project-desc">Developed an end-to-end LinkedIn branding strategy for a spiritual healer — content calendar, testimonial videos, explainer content, and targeted social ads — resulting in measurably increased engagement and appointment bookings.</p>
       <div class="project-tools">
         <span class="tool-tag">LinkedIn Ads</span>
         <span class="tool-tag">Content strategy</span>
@@ -780,7 +898,7 @@
       <div class="volunteer-card" style="margin-top:1.5rem;">
         <div class="v-org">Volunteer · Siliguri Pride Walk</div>
         <h3>Core Committee Member</h3>
-        <p>Led rescue operations for LGBTQIA+ abuse victims, coordinating with police, lawyers, and politicians. Organised community carnivals with medical, psychological, and legal speakers. (De[...]
+        <p>Led rescue operations for LGBTQIA+ abuse victims, coordinating with police, lawyers, and politicians. Organised community carnivals with medical, psychological, and legal speakers. (Dec 2020 – Feb 2023)</p>
       </div>
     </div>
   </div>
@@ -793,6 +911,17 @@
 
 
 <script>
+function toggleMenu() {
+  var menu = document.getElementById('mobile-menu');
+  var btn = document.getElementById('hamburger');
+  var open = menu.classList.contains('open');
+  menu.classList.toggle('open', !open);
+  btn.classList.toggle('open', !open);
+}
+function closeMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
 function toggleDropdown() {
   var dd = document.getElementById('git-dropdown');
   var arrow = document.getElementById('git-arrow');
